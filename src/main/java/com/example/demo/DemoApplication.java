@@ -53,7 +53,7 @@ public class DemoApplication {
         
         // ######## UTENTE CONTROLLER ########
         
-        @GetMapping("/getUserById/{id}", produces = "MediaType.APPLICATION_JSON_VALUE"))
+        @GetMapping("/getUserById/{id}", produces = MediaType.APPLICATION_JSON_VALUE))
         public ResponseEntity getUsers(@PathVariable("id") Integer id) {
            Optional<Utente> utenteCercato = utenteService.getUtente(id);
                  return new ResponseEntity<>(utenteCercato, HttpStatus.OK);
