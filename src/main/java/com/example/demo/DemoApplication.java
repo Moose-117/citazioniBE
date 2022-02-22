@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 
 
 
@@ -53,7 +54,7 @@ public class DemoApplication {
         
         // ######## UTENTE CONTROLLER ########
         
-        @GetMapping("/getUserById/{id}", produces = MediaType.APPLICATION_JSON_VALUE))
+        @GetMapping(value = "/getUserById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity getUsers(@PathVariable("id") Integer id) {
            Optional<Utente> utenteCercato = utenteService.getUtente(id);
                  return new ResponseEntity<>(utenteCercato, HttpStatus.OK);
