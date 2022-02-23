@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
 
 
-
+@CrossOrigin( origins = "*" )
 @SpringBootApplication
 @RestController
 @RequestMapping("/users")
