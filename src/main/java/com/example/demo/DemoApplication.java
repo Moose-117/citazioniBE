@@ -9,9 +9,9 @@ import com.example.demo.model.Artista;
 import com.example.demo.model.Citazione;
 import com.example.demo.model.Libro;
 import com.example.demo.model.Utente;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,31 +91,28 @@ public class DemoApplication {
             artistaService.deleteArtista(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
+        
+        
                  // ######## CITAZIONE CONTROLLER ########
         
          @GetMapping("/getCitazioneById/{id}")
         public ResponseEntity getCitazione(@PathVariable("id") Integer id) {
-           Optional<Citazione> citazioneCercata = citazioneService.getById(id);
-                 return new ResponseEntity<>(citazioneCercata, HttpStatus.OK);
-        }
-        
-         @GetMapping("/getAllCitazioni")
-        public ResponseEntity getListCitazione() {
-           List<Citazione> citazioneCercata = citazioneService.getAll();
+           Optional<Citazione> citazioneCercata = citazioneService.getCitazione(id);
                  return new ResponseEntity<>(citazioneCercata, HttpStatus.OK);
         }
         
          @PostMapping("/postCitazione")
-        public ResponseEntity post(@RequestBody Citazione citazione){
-            citazioneService.post(citazione);
+        public ResponseEntity postCitazione(@RequestBody Citazione citazione){
+            citazioneService.postCitazione(citazione);
             return new ResponseEntity<>(citazione, HttpStatus.CREATED);
         }
         
           @GetMapping("/deleteCitazione/{id}")
-        public ResponseEntity deleteById(@PathVariable("id") Integer id){
-            citazioneService.deleteById(id);
+        public ResponseEntity deleteCitazione(@PathVariable("id") Integer id){
+            citazioneService.deleteCitazione(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
+        
         
                  // ######## LIBRO CONTROLLER ########
 
