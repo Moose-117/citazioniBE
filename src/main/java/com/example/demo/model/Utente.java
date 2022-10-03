@@ -6,6 +6,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Utente implements Serializable{
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5660519440950727924L;
     @Id
     Integer idUtente;
     String email;

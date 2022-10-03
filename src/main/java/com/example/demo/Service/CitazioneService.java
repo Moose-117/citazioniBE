@@ -17,6 +17,10 @@ public class CitazioneService {
         return citazioneRepository.getCitazione(stringaCercata);
     }
 
+    public List<Citazione> getAllCitazioni() {
+        return citazioneRepository.findAll();
+    }
+
     public Citazione postCitazione(Citazione citazione) {
         Random rd = new Random();
         citazione.setIdCitazione(rd.nextInt());

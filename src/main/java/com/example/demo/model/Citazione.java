@@ -7,6 +7,10 @@ import javax.persistence.Id;
 @Entity
 public class Citazione implements Serializable {
     
+/**
+     *
+     */
+    private static final long serialVersionUID = -2957804192990403277L;
 @Id
 private Integer idCitazione;
 private Integer idArtista;  

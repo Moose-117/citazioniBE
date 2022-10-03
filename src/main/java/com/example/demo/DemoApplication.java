@@ -83,6 +83,11 @@ public class DemoApplication {
         return citazioneService.getCitazione(stringaCercata);
     }
 
+    @GetMapping("/getAllCitazioni")
+    public List<Citazione> getCitazione() {
+        return citazioneService.getAllCitazioni();
+    }
+
     @PostMapping("/postCitazione")
     public Citazione postCitazione(@RequestBody Citazione citazione) {
         return citazioneService.postCitazione(citazione);

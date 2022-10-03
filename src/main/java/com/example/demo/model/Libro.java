@@ -6,6 +6,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Libro implements Serializable{
+/**
+     *
+     */
+    private static final long serialVersionUID = 1988187987881831727L;
 @Id
 private Integer idLibro;
 private Integer idArtista;
