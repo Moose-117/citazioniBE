@@ -4,7 +4,6 @@
  */
 package com.example.demo.Service;
 
-import com.example.demo.model.Citazione;
 import com.example.demo.model.Libro;
 import com.example.demo.repositories.LibroRepository;
 import java.util.Optional;

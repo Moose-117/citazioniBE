@@ -11,6 +11,7 @@ public class Citazione implements Serializable {
 private Integer idCitazione;
 private Integer idArtista;  
 private Integer idLibro;  
+private String content;
 
     public Integer getIdCitazione() {
         return idCitazione;
@@ -29,6 +30,14 @@ private Integer idLibro;
     }
     public void setIdLibro(Integer idLibro) {
         this.idLibro = idLibro;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
