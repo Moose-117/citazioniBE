@@ -4,9 +4,8 @@ import com.example.demo.Service.external.TikTokRestCallsService;
 import com.example.demo.model.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
-import java.net.http.HttpResponse;
-import java.util.Random;
+//import java.util.Random;
+import org.json.*;
 
 @Service
 public class ManageTokenService {
@@ -22,19 +21,35 @@ public class ManageTokenService {
      * }
      */
 
-    public Token createToken() {
+    // public Token createToken() {
+    // Token token = new Token();
+    // Random rd = new Random();
+    // Integer generatedToken = rd.nextInt();
+    // token.setContent(generatedToken.toString());
+    // return token;
+    // }
+
+    public String createToken() {
         Token token = new Token();
-        Random rd = new Random();
-        Integer generatedToken = rd.nextInt();
-        token.setContent(generatedToken.toString());
-        return token;
+        String responseServer;
+        try {
+            responseServer = tikTokRestCallsService.callTikTokAuthServer().body();
+
+            JSONObject json = new JSONObject(responseServer);
+            token.setToken(json.getString("token"));
+        } catch (Exception e) {
+        }
+        return token.getToken();
+
     }
 
-    public HttpResponse<String> validateToken(Token token) {
+    public String validateToken() {
+        String response = null;
+
         try {
-            return tikTokRestCallsService.callTikTokAuthServer(token);
-        } catch (IOException | InterruptedException e) {
-            return null;
+            response = tikTokRestCallsService.callTikTokAuthServer().body();
+        } catch (Exception e) {
         }
+        return response;
     }
 }

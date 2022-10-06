@@ -9,9 +9,7 @@ import com.example.demo.Service.ManageTokenService;
 import com.example.demo.model.Artista;
 import com.example.demo.model.Citazione;
 import com.example.demo.model.Libro;
-import com.example.demo.model.Token;
 import com.example.demo.model.Utente;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+//import com.example.demo.model.Token;
 
 @CrossOrigin(origins = "*")
 @SpringBootApplication
@@ -43,6 +41,7 @@ public class DemoApplication {
     private LibroService libroService;
     @Autowired
     private ManageTokenService manageTokenService;
+   
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -127,10 +126,9 @@ public class DemoApplication {
     }
 
         // ######## heroku CONTROLLER ########
-        @GetMapping(value= "/token", produces = MediaType.TEXT_HTML_VALUE)
-        public @ResponseBody HttpResponse<String> token() {
-            Token token = manageTokenService.createToken();
-            System.out.println(manageTokenService.validateToken(token));
-            return manageTokenService.validateToken(token);
+        @GetMapping(value= "/token", produces = MediaType.ALL_VALUE)
+        public String token() {
+           // Token token = manageTokenService.createToken();
+           return manageTokenService.createToken();
         }
 }
