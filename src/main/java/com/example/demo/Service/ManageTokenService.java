@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Service.external.TikTokRestCallsService;
+import com.example.demo.Service.external.AuthenticationService;
+import com.example.demo.model.CredentialsDto;
 import com.example.demo.model.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Service;
 import org.json.*;
 
 @Service
+
 public class ManageTokenService {
 
     @Autowired
-    private TikTokRestCallsService tikTokRestCallsService;
+    private AuthenticationService authenticationService;
 
     /*
      * public Utente postUtente (Utente utente){
@@ -29,27 +31,24 @@ public class ManageTokenService {
     // return token;
     // }
 
-    public String createToken() {
+    public String createToken(CredentialsDto credentialsDto) {
         Token token = new Token();
         String responseServer;
         try {
-            responseServer = tikTokRestCallsService.callTikTokAuthServer().body();
-
+            responseServer = authenticationService.generateToken(credentialsDto).body();
             JSONObject json = new JSONObject(responseServer);
             token.setToken(json.getString("token"));
         } catch (Exception e) {
         }
         return token.getToken();
-
     }
 
-    public String validateToken() {
-        String response = null;
-
-        try {
-            response = tikTokRestCallsService.callTikTokAuthServer().body();
-        } catch (Exception e) {
-        }
-        return response;
-    }
+    // public String validateToken() {
+    //     String response = null;
+    //     try {
+    //         response = authenticationService.().body();
+    //     } catch (Exception e) {
+    //     }
+    //     return response;
+    // }
 }

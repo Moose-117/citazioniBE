@@ -6,7 +6,7 @@ public class Token implements Serializable {
 
     private static final long serialVersionUID = 1657026722406315730L;
     private String content;
-    public String token;
+    private String token;
 
     public String getContent() {
         return content;
@@ -19,6 +19,5 @@ public class Token implements Serializable {
     }
     public void setToken(String token) {
         this.token = token;
-    }    
-
+    }  
 }

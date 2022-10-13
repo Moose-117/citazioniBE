@@ -8,6 +8,7 @@ import com.example.demo.Service.LibroService;
 import com.example.demo.Service.ManageTokenService;
 import com.example.demo.model.Artista;
 import com.example.demo.model.Citazione;
+import com.example.demo.model.CredentialsDto;
 import com.example.demo.model.Libro;
 import com.example.demo.model.Utente;
 import java.util.List;
@@ -41,7 +42,6 @@ public class DemoApplication {
     private LibroService libroService;
     @Autowired
     private ManageTokenService manageTokenService;
-   
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -125,10 +125,12 @@ public class DemoApplication {
         return "ciao";
     }
 
-        // ######## heroku CONTROLLER ########
-        @GetMapping(value= "/token", produces = MediaType.ALL_VALUE)
-        public String token() {
+    // ######## heroku CONTROLLER ########
+    @PostMapping("/token")
+        public String token(@RequestBody CredentialsDto credentialsDto) {
            // Token token = manageTokenService.createToken();
-           return manageTokenService.createToken();
+        String response = manageTokenService.createToken(credentialsDto);
+        System.out.println(response);
+        return response;
         }
 }
